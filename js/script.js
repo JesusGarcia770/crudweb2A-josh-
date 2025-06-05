@@ -27,3 +27,36 @@ function MostrarDatos(datos){
 
 
 ObtenerIntegrantes();
+
+
+//agregar nuevo integrante
+const modal = document.getElementById("mdAgregar");
+const btnAgregar = document.getElementById("btnAgregar");
+const btnCerrar = document.getElementById("btnCerrar");
+
+btnAgregar.addEventListener("click", ()=>{
+    modal.showModal();
+});
+btnCerrar.addEventListener("click", ()=>{
+    modal.close();
+});
+
+//agregar nuevo integrante desde el formulario
+document.getElementById("frmAgregar").addEventListener("submit", async e => {
+    e.preventDefault();//e representa a submit
+    //capturar valores
+    const nombre = document.getElementById("txtNombre").ariaValueMax.trim();
+    const apellido = document.getElementById("txtApellido").ariaValueMax.trim();
+    const correo = document.getElementById("txtEmail").ariaValueMax.trim();
+    //validacion
+    if(!nombre || !apellido || !correo){
+        alert("Ingrese los valores correctamente");
+        return;
+    }
+
+    //llamar a la Api para enviar el registro
+    const respuesta = await fetch(API_URL, {
+        method: "POST"
+    });//fetch para llamar a la api
+
+});
