@@ -18,7 +18,7 @@ function MostrarDatos(datos){
                 <td>${integrante.correo}</td>
                 <td>
                     <button>Editar</button>
-                    <button>Editar</button>
+                    <button onClick="EliminarPersona(${integrante.id})">Eliminar</button>
                 </td>
             </tr>
         `;
@@ -76,3 +76,14 @@ document.getElementById("frmAgregar").addEventListener("submit", async e => {
     }
  
 });
+
+async function EliminarPersona(id){
+    const confirmacion = confirm("realmente deseas eliminar el registro?");
+    if(confirmacion){
+        await fetch(`${API_URL}/${id}`,{
+            method: "DELETE"
+        });
+
+        ObtenerIntegrantes();
+    }
+}
